@@ -92,11 +92,13 @@ local function fetch_color_map( texture_name )
     local img = image.from_png( texture_name )
 
     local color = getAverageColor(img, img.width, img.height)
-    local h, s, l = rgb_to_hsl(color[1], color[2], color[3])
-    h = h + 10
-    l = l + 30
 
-    return {hsl_to_rgb(h, s, l)}
+    local h, s, l = rgb_to_hsl(color[1], color[2], color[3])
+    h = h
+    s = s
+    l = 50
+
+    return { hsl_to_rgb(h, s, l) }
 end
 
 -- Получение цвета блока

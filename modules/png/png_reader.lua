@@ -40,7 +40,7 @@ function png_reader.read_from_buffer(buffer)
 		for x = 1, width do
 			pixel = img:getPixel(x, y)
 
-			if pexel then
+			if pixel then
 				pixels[x+(y-1)*width] = { pixel.R, pixel.G, pixel.B, pixel.A }
 			else
 				pixels[x+(y-1)*width] = { 0, 0, 0, 0 } -- прозрачный пиксель
