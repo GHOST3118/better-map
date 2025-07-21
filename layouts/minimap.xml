@@ -1,0 +1,4 @@
+<container id="minimap" size="400,400">
+    <canvas id="minimap_canvas" size="256,256"></canvas>
+    <label pos="16,248" id="pcoords">x:0 y:0 z:0</label>
+</container>
