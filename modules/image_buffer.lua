@@ -37,6 +37,32 @@ function ImageBuffer:clear(color)
     end
 end
 
+--- Отзеркаливание изображения
+-- @param horizontal: если true, отражает по горизонтали (вдоль вертикальной оси)
+-- @param vertical: если true, отражает по вертикали (вдоль горизонтальной оси)
+function ImageBuffer:flip(horizontal, vertical)
+    local w, h = self.width, self.height
+    local newBuf = ImageBuffer.new(w, h)
+
+    for y = 0, h - 1 do
+        for x = 0, w - 1 do
+            local srcX = horizontal and (w - 1 - x) or x
+            local srcY = vertical and (h - 1 - y) or y
+            local srcIdx = (srcY * w + srcX) * 4 + 1
+            local color = {
+                self.data[srcIdx],
+                self.data[srcIdx + 1],
+                self.data[srcIdx + 2],
+                self.data[srcIdx + 3]
+            }
+            newBuf:setPixel(x, y, color)
+        end
+    end
+
+    self.data = newBuf:getData()
+    return self
+end
+
 -- Установить цвет одного пикселя
 function ImageBuffer:setPixel(x, y, color)
     if not self:inBounds(x, y) then return end

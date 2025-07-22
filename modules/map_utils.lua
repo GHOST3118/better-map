@@ -92,6 +92,7 @@ local function fetch_color_map( texture_name )
     local img = image.from_png( texture_name )
 
     local color = getAverageColor(img, img.width, img.height)
+    img = nil -- освобождаем память
 
     local h, s, l = rgb_to_hsl(color[1], color[2], color[3])
     h = h
